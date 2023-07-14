@@ -35,6 +35,17 @@ public abstract class BasePage {
         module.click();
     }
 
+    /**
+     * returns WebElement after passing text of menu option
+     * @param moduleName
+     * @return WebElement
+     */
+    public WebElement moduleGetElement(String moduleName){
+        String editedModuleName = moduleName.substring(0,1).toUpperCase()+moduleName.substring(1).toLowerCase();
+        String locator = "//ul[@id='appmenu']//a[@aria-label='"+editedModuleName+"']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]";
+        return Driver.getDriver().findElement(By.xpath(locator));
+    }
+
 
     @FindBy(xpath = "//span[@aria-label='Magnify icon']//*[name()='svg']")
     public WebElement searchIcon;
