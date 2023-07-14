@@ -23,40 +23,17 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    public WebElement elementById(String id){
-        String id1 = id.substring(0,1).toUpperCase()+id.substring(1).toLowerCase();
-        String locator = "//ul[@id='appmenu']//a[@aria-label='"+id1+"']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]";
+    /**
+     * navigates user to the given Module page by clicking on the relevant module icon
+     * @param moduleName
+     */
+    public void navigateToModule(String moduleName){
+        String editedModuleName = moduleName.substring(0,1).toUpperCase()+moduleName.substring(1).toLowerCase();
+        String locator = "//ul[@id='appmenu']//a[@aria-label='"+editedModuleName+"']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]";
 
-        return Driver.getDriver().findElement(By.xpath(locator));
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
     }
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Files']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement files;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Photos']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement photos;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Activity']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement activity;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Mail']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement mail;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Contacts']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement contacts;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Calendar']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement calendar;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Notes']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement notes;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Deck']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement deck;
-
-    @FindBy(xpath = "//ul[@id='appmenu']//a[@aria-label='Tasks']//*[name()='svg']//*[name()='image' and contains(@class,'app-icon')]")
-    public WebElement tasks;
-
 
 
     @FindBy(xpath = "//span[@aria-label='Magnify icon']//*[name()='svg']")
