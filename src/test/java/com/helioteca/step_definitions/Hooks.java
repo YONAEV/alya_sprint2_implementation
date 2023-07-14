@@ -1,11 +1,11 @@
-package com.project_name.step_definitions;
+package com.helioteca.step_definitions;
 
 
 
 
-import com.project_name.utilities.BrowserUtils;
-import com.project_name.utilities.ConfigurationReader;
-import com.project_name.utilities.Driver;
+import com.helioteca.utilities.BrowserUtils;
+import com.helioteca.utilities.ConfigurationReader;
+import com.helioteca.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -47,22 +47,11 @@ public class Hooks {
 
         }
 
-
-
         BrowserUtils.sleep(2);
         Driver.closeDriver();
 
     }
 
-    //@BeforeStep
-    public void setupStep(){
-        System.out.println("-----> @BeforeSTEP : Running before each step!");
-    }
-
-    //@AfterStep
-    public void teardownStep(){
-        System.out.println("-----> @AfterSTEP : Running after each step!");
-    }
 
 
 }
