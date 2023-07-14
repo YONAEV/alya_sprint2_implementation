@@ -4,6 +4,8 @@ import com.helioteca.pages.LoginPage;
 import com.helioteca.utilities.ConfigurationReader;
 import com.helioteca.utilities.Driver;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import org.junit.Assert;
 
 public class LoginStepDefs {
 
@@ -18,4 +20,8 @@ public class LoginStepDefs {
         loginPage.login(username,password);
     }
 
+    @Then("user should see {string} in title")
+    public void userShouldSeeInTitle(String expectedTitle) {
+        Assert.assertEquals(expectedTitle,Driver.getDriver().getTitle());
+    }
 }
