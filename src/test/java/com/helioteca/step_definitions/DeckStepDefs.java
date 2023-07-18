@@ -58,7 +58,7 @@ public class DeckStepDefs {
     @And("user types {string} in text field")
     public void userTypesInTextField(String arg0) {
         deckPage.listNameTextField.sendKeys(arg0);
-        BrowserUtils.sleep(4);
+        //BrowserUtils.sleep(4);
     }
 
     @Then("user can see newly created list {string}")
