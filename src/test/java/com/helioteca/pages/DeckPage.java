@@ -24,6 +24,7 @@ public class DeckPage extends BasePage {
     public WebElement submitArrowButtonCard;
 
     public WebElement newlyCreatedBoard(String name){
+
         return Driver.getDriver().findElement(By.xpath("(//span[@title='"+name+"'])[last()]"));
     }
     @FindBy(xpath = "//button[@class='action-item action-item--single icon-add undefined undefined has-tooltip']")

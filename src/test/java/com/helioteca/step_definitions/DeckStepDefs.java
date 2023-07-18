@@ -41,6 +41,7 @@ public class DeckStepDefs {
 
     @Then("newly created board {string} should be displayed under All boards")
     public void newlyCreatedBoardShouldBeDisplayedUnderAllBoards(String arg0) {
+        BrowserUtils.waitForVisibility(deckPage.newlyCreatedBoard(arg0),10);
         Assert.assertTrue(deckPage.newlyCreatedBoard(arg0).isDisplayed());
     }
 
