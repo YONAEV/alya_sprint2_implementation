@@ -27,5 +27,4 @@ public class LoginPage{
         password.sendKeys(passwordStr);
         submit.click();
     }
-
 }
