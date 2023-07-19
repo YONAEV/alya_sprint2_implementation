@@ -107,7 +107,6 @@ public class DeckStepDefs {
         Assert.assertTrue(deckPage.userProfileIconAssignToMe.isDisplayed());
     }
 
-
     @And("user clicks on addListButtonArrow")
     public void userClicksOnAddListButtonArrow() {
         BrowserUtils.waitForClickablility(deckPage.addListButtonArrow, 10);
