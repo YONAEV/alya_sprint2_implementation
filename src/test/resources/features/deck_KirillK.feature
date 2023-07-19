@@ -6,7 +6,7 @@ Feature: US-005 Deck Module Functionality
     Given the user is on the login page
     And the user logged in with username as "Employee75" and password as "Employee123"
     And the user navigates to "Deck" module page
-    Then the user clicks on deck menu button
+    And the user clicks on deck menu button
 
   @B29G3-272
   Scenario: US-005 AC1 TC Verify that User can create a new board
