@@ -2,13 +2,10 @@ package com.helioteca.step_definitions;
 
 import com.helioteca.pages.DeckPage;
 import com.helioteca.utilities.BrowserUtils;
-import com.helioteca.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 
 public class DeckStepDefs {
 
@@ -26,6 +23,7 @@ public class DeckStepDefs {
 
     @And("the user clicks on Add board button")
     public void theUserClicksOnAddBoardButton() {
+        BrowserUtils.waitForClickablility(deckPage.addBoardButton,10);
         deckPage.addBoardButton.click();
     }
 
@@ -41,14 +39,14 @@ public class DeckStepDefs {
 
     @Then("newly created board {string} should be displayed under All boards")
     public void newlyCreatedBoardShouldBeDisplayedUnderAllBoards(String arg0) {
-        BrowserUtils.waitForVisibility(deckPage.newlyCreatedBoard(arg0),10);
-        Assert.assertTrue(deckPage.newlyCreatedBoard(arg0).isDisplayed());
+        BrowserUtils.waitForVisibility(deckPage.getNewlyCreatedBoard(arg0),10);
+        Assert.assertTrue(deckPage.getNewlyCreatedBoard(arg0).isDisplayed());
     }
 
 
     @And("user clicks on board with a name {string}")
     public void userClicksOnBoardWithAName(String arg0) {
-        deckPage.newlyCreatedBoard(arg0).click();
+        deckPage.getNewlyCreatedBoard(arg0).click();
     }
 
     @And("user clicks on Add list button")
@@ -64,12 +62,13 @@ public class DeckStepDefs {
 
     @Then("user can see newly created list {string}")
     public void userCanSeeNewlyCreatedList(String arg0) {
-        Assert.assertTrue(deckPage.newlyCreatedList(arg0).getText().trim().equals(arg0));
+        BrowserUtils.waitForVisibility(deckPage.getNewlyCreatedList(arg0),10);
+        Assert.assertTrue(deckPage.getNewlyCreatedList(arg0).getText().trim().equals(arg0));
     }
 
     @And("user clicks on Add card button")
     public void userClicksOnAddCardButton() {
-        deckPage.addCardButton.click();
+        deckPage.addCardPlusButton.click();
     }
 
     @And("user types {string} in Card Name text field")
@@ -104,6 +103,7 @@ public class DeckStepDefs {
 
     @Then("user profile icon should be displayed near the three dots icon")
     public void userProfileIconShouldBeDisplayedNearTheThreeDotsIcon() {
+        BrowserUtils.waitForVisibility(deckPage.userProfileIconAssignToMe,10);
         Assert.assertTrue(deckPage.userProfileIconAssignToMe.isDisplayed());
     }
 
