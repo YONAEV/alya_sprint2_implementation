@@ -1,0 +1,107 @@
+package com.helioteca.step_definitions;
+import com.github.javafaker.Faker;
+import com.helioteca.utilities.BrowserUtils;
+import com.helioteca.utilities.ConfigurationReader;
+import com.helioteca.utilities.Driver;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import com.helioteca.pages.FilesPage;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class FilesStepDefs {
+    FilesPage filesPage = new FilesPage();
+    Faker faker = new Faker();
+    String folderName;
+
+    @When("user navigates on {string} module page")
+    public void user_navigates_on_module_page(String module) {
+        filesPage.navigateToModule(module);
+    }
+
+    @Then("user clicks on add button")
+    public void user_clicks_on_add_button() {
+     filesPage.addButton.click();
+    }
+
+    @Then("uploads file")
+    public void uploads_file() {
+         filesPage.uploadFile.sendKeys(ConfigurationReader.getProperty("path"));
+         BrowserUtils.waitFor(5);
+            }
+
+    @Then("file should appear on the list")
+    public void file_should_appear_on_the_list() {
+
+            boolean isInit= false;
+
+       for (WebElement eachFile : filesPage.listOfFiles) {
+
+
+           if (eachFile.getText().equals(ConfigurationReader.getProperty("nameFile"))) {
+               isInit=true;;
+           }
+
+       }
+            Assert.assertTrue(isInit);
+
+    }
+
+    @Then("user creates new folder")
+    public void user_creates_new_folder() {
+       filesPage.newFolder.click();
+    }
+
+    @Then("user name the folder")
+    public void user_name_the_folder() {
+         folderName = faker.app().name();
+         filesPage.folderNameField.sendKeys(folderName);
+       filesPage.folderNameArrowBtn.click();
+           }
+
+    @Then("new folder should appear on the list")
+    public void new_folder_should_appear_on_the_list() {
+        boolean isInit = false;
+
+        for(WebElement eachFile : filesPage.listOfFiles) {
+
+            if(eachFile.getText().equals(folderName)){
+                isInit=true;
+                }
+              }
+        Assert.assertTrue(isInit);
+    }
+
+    @Then("user clicks on three dots of selected item")
+    public void user_clicks_on_three_dots_of_selected_item() {
+    filesPage.threeDot.click();
+        //Driver.getDriver().findElement(By.xpath(filesPage.threeDotLocator(ConfigurationReader.getProperty("nameFile")))).click();
+    }
+
+    @Then("clicks on delete folder or file")
+    public void clicks_on_delete_folder_or_file() {
+        filesPage.deleteBtn.click();
+
+    }
+
+    @Then("file should no longer be part of displayed list")
+    public void file_should_no_longer_be_part_of_displayed_list() {
+        for (WebElement eachFile : filesPage.listOfFiles) {
+            Assert.assertTrue(!eachFile.getText().equals(ConfigurationReader.getProperty("nameFile")));
+        }
+    }
+
+    @Then("user verify number of items match displayed number of folders and files")
+    public void user_verify_number_of_items_match_displayed_number_of_folders_and_files() {
+        String totalInfo="";
+        for (WebElement each : filesPage.totalFileInfo) {
+            totalInfo+= each.getText();
+        }
+        System.out.println(totalInfo);
+        System.out.println("FilesPage.string_SumOfAllDigits(totalInfo) = " + FilesPage.string_SumOfAllDigits(totalInfo));
+    }
+
+
+}
